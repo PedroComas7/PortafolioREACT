@@ -1,4 +1,15 @@
+import { useState, useEffect } from 'react'
+
 export function Works(){
+    const [works, setWorks] = useState([])
+
+    useEffect(() => {
+        fetch('/src/data/works.json')
+            .then(response => response.json())
+            .then(data => setWorks(data))
+            .catch(error => console.error('Error al cargar los trabajos:', error))
+    }, [])
+
     return(
         <section className="seccion works" id="works">
 
@@ -6,22 +17,16 @@ export function Works(){
             <p>Aqui te presento mis trabajos realizados a lo largo de mi carrera</p>
 
             <div className="grid">
-                <article className="article">
-                    <a className="a" href="#" title="Trabajo1">
-                        <figure className="figure">
-                            <img src="/img/chica.jpg" alt="Imagen" className="img" loading="lazy"/>
-                        </figure>
-                        <h4 className="h4">Trabajo 1</h4>
-                    </a>
-                </article>
-                <article className="article">
-                    <a className="a" href="#" title="Trabajo1">
-                        <figure className="figure">
-                            <img src="/img/chico.jpg" alt="Imagen" className="img" loading="lazy"/>
-                        </figure>
-                        <h4 className="h4">Trabajo 2</h4>
-                    </a>
-                </article>
+                {works.map(work => (
+                    <article className="article" key={work.id}>
+                        <a className="a" href={work.link} title={work.title}>
+                            <figure className="figure">
+                                <img src={work.image} alt={work.alt} className="img" loading="lazy"/>
+                            </figure>
+                            <h4 className="h4">{work.title}</h4>
+                        </a>
+                    </article>
+                ))}
             </div>
         </section>
     )

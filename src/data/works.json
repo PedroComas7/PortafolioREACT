@@ -1,0 +1,16 @@
+[
+{
+    "id": 1,
+    "title": "Trabajo 1",
+    "image": "/img/chica.jpg",
+    "alt": "Imagen del trabajo 1",
+    "link": "#"
+},
+{
+    "id": 2,
+    "title": "Trabajo 2",
+    "image": "/img/chico.jpg",
+    "alt": "Imagen del trabajo 2",
+    "link": "#"
+}
+]
